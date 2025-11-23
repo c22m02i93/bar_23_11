@@ -1,16 +1,17 @@
 <!-- ===========================
-      HEAD (оптимизированный)
+      HEAD ()
 =========================== -->
 
 <meta charset="UTF-8">
 
-<meta name="keywords" content="Барышская епархия, Русская Православная Церковь, Симбирсая митрополия, епархия, Барыш, Ульяновск, Ульяновская область">
+<meta name="keywords" content=" ,   ,  , , , ,  ">
 
-<!-- Основные стили сайта -->
+<!--    -->
 <link rel="stylesheet" href="/style.css">
-<link rel="stylesindex" href="/index1.css"
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesindex" href="/index1.css">
 
-<!-- Preload локальных скриптов -->
+<!-- Preload   -->
 <link rel="preload" href="/js/jquery.min.js" as="script">
 <link rel="preload" href="/js/baguetteBox.min.js" as="script">
 <link rel="preload" href="/css/baguetteBox.min.css" as="style">
@@ -19,16 +20,16 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-<!-- baguetteBox (локально) -->
+<!-- baguetteBox () -->
 <link rel="stylesheet" href="/css/baguetteBox.min.css">
 
-<!-- jQuery (локально) -->
+<!-- jQuery () -->
 <script src="/js/jquery.min.js" defer></script>
 
-<!-- baguetteBox (локально) -->
+<!-- baguetteBox () -->
 <script src="/js/baguetteBox.min.js" defer></script>
 
-<!-- Font Awesome (CDN – только webfonts) -->
+<!-- Font Awesome (CDN   webfonts) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <!-- RSS -->
@@ -37,112 +38,76 @@
 <?php list($msec,$sec)=explode(" ",microtime()); $mTimeStart=$sec+$msec; ?>
 
 <!-- ===========================
-      ХЕДЕР
+
 =========================== -->
 
-<div class="head" style="width:100%; background:#fff; border-bottom:1px solid #d7d7d7;">
+<div class="head">
 
-    <div style="width:1100px; margin:0 auto;">
+    <div class="head__inner">
 
-        <!-- Верхняя строка -->
-        <div style="
-            width:100%;
-            padding:10px 0;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            font-family:'Segoe UI Light', arial;
-        ">
-            <div style="color:#999; font-size:14px; white-space:nowrap;">
-                Русская Православная Церковь – Симбирская митрополия
+        <!--   -->
+        <div class="head__top">
+            <div class="head__date">
+
             </div>
 
-            <div style="display:flex; align-items:center; gap:15px; font-size:16px;">
-                <a href="/rss.php" style="color:#666;"><i class="fa-solid fa-square-rss"></i></a>
-                <a href="https://pda.barysh-eparhia.ru/" style="color:#666;"><i class="fa-solid fa-mobile-screen"></i></a>
-                <a href="https://vk.com/barysheparhia" style="color:#666;"><i class="fa-brands fa-vk"></i></a>
+            <div class="head__icons">
+                <a href="/rss.php" class="head__icon-link"><i class="fa-solid fa-square-rss"></i></a>
+                <a href="https://pda.barysh-eparhia.ru/" class="head__icon-link"><i class="fa-solid fa-mobile-screen"></i></a>
+                <a href="https://vk.com/barysheparhia" class="head__icon-link"><i class="fa-brands fa-vk"></i></a>
 
-                <!-- Поиск -->
-                <a href="javascript:void(0);" onclick="openSearch()" style="color:#666;">
+                <!--  -->
+                <a href="javascript:void(0);" onclick="openSearch()" class="head__icon-link">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
             </div>
         </div>
 
-        <!-- Лого + Название -->
-        <div style="display:flex; align-items:center; gap:20px; padding-bottom:10px;">
-            <a href="/"><img src="/IMG/logo.png" style="height:70px;" loading="lazy"></a>
+        <!--  +  -->
+        <div class="head__branding">
+            <a href="/"><img class="head__logo" src="/IMG/logo.png" loading="lazy"></a>
 
-            <div style="display:flex; flex-direction:column;">
-                <div style="
-                    font-family:'Segoe UI Light', arial;
-                    font-size:38px;
-                    color:#444;
-                    letter-spacing:3px;
-                ">
-                    БАРЫШСКАЯ ЕПАРХИЯ
+            <div class="head__text">
+                <div class="head__title">
+
                 </div>
 
-                <div style="
-                    font-family:'Segoe UI Light', arial;
-                    color:#999;
-                    font-size:14px;
-                    margin-top:5px;
-                ">
-                    По благословению митрополита Симбирского и Новоспасского Лонгина, <br>временно управляющего Барышской епархией
+                <div class="head__subtitle">
+                          , <br>
                 </div>
             </div>
         </div>
 
-        <div style="border-top:1px solid #d7d7d7; margin-bottom:10px;"></div>
+        <div class="head__divider"></div>
 
-        <!-- Меню -->
+        <!--  -->
     </div>
 </div>
 
 <!-- ===========================
-      ВСПЛЫВАЮЩЕЕ ОКНО ПОИСКА
+
 =========================== -->
 
-<div id="search-popup" style="
-    display:none;
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.55);
-    z-index:9999;
-">
-    <div style="
-        width:400px;
-        background:#fff;
-        padding:20px;
-        border-radius:10px;
-        margin:120px auto;
-        text-align:center;
-        font-family:Arial;
-        box-shadow:0 0 20px rgba(0,0,0,0.3);
-    ">
-        <div style="font-size:20px; margin-bottom:10px;">Поиск по сайту</div>
+<div id="search-popup" class="search-popup">
+    <div class="search-popup__content">
+        <div class="search-popup__title">  </div>
 
         <form action="/search.php">
-            <input type="text" name="q" placeholder="Введите запрос..."
-                style="width:90%; padding:8px; margin-bottom:10px; font-size:16px;">
+            <input type="text" name="q" placeholder=" ..."
+                class="search-popup__input">
         </form>
 
-        <button onclick="closeSearch()" 
-                style="padding:8px 18px; border:none; background:#444; color:#fff; border-radius:6px; cursor:pointer;">
-            Закрыть
+        <button onclick="closeSearch()"
+                class="search-popup__button">
+
         </button>
     </div>
 </div>
 
-<!-- Стили меню (оставил как есть) -->
-<style>
-/* ...оставлено без изменений... */
-</style>
+<!--   (  ) -->
 
 <!-- ===========================
-      JS функционал
+      JS
 =========================== -->
 
 <script defer>
