@@ -1,109 +1,140 @@
 <?
-if (isset($_REQUEST[session_name()])) session_start ();
-$auth=$_SESSION['auth'];
-$name_user=$_SESSION['name_user'];
+if (isset($_REQUEST[session_name()])) session_start();
+$auth = $_SESSION['auth'];
+$name_user = $_SESSION['name_user'];
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<?
-include 'head.php';
-?>
-<title>Анонсы и объявления</title>
 
+<head>
+    <? include 'head.php'; ?>
+    <title>РђРЅРѕРЅСЃС‹ Рё РѕР±СЉСЏРІР»РµРЅРёСЏ</title>
+
+    <link rel="stylesheet" href="/Index1.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/all.min.css">
 </head>
+
 <body>
 
-<div style="box-shadow: 0 0 20px rgba(0,0,0,0.5);">
-<?
-include 'golova.php';
-$anons = yes;
-include 'menu.php';
-include 'function.php';
+<div class="page-wrapper">
 
-include 'content.php';
+    <? include 'golova.php'; ?>
+    <? $anons = yes; ?>
+    <? include 'menu.php'; ?>
+    <? include 'function.php'; ?>
+    <? include 'content.php'; ?>
 
-?>
+    <div id="osnovnoe" class="main-column card news-list-block">
 
-<div id="osnovnoe">
+        <h1 class="section-title"> РђРЅРѕРЅСЃС‹ Рё РѕР±СЉСЏРІР»РµРЅРёСЏ </h1>
 
-<h1>Анонсы и объявления</h1>
+        <?
+        // РќРѕРјРµСЂ СЃС‚СЂР°РЅРёС†С‹
+        if (!isset($_GET['page'])) {
+            $p = 1;
+        } else {
+            $p = addslashes(strip_tags(trim($_GET['page'])));
+            if ($p < 1) $p = 1;
+        }
 
- <?   if(!isset($_GET['page'])){
-  $p = 1;
-}
-else{
-  $p = addslashes(strip_tags(trim($_GET['page'])));
-  if($p < 1) $p = 1;
-}
-$num_elements = 10;
-$total = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.anons"),0,0); //Подсчет общего числа записей
-$num_pages = ceil($total / $num_elements); //Подсчет числа страниц
-if ($p > $num_pages) $p = $num_pages;
-$start = ($p - 1) * $num_elements; //Стартовая позиция выборки из БД
-                    
-					
-  echo GetNav($p, $num_pages, "anons").'<hr style="width: 100%" />';
-            $sel = "SELECT * FROM host1409556_barysh.anons ORDER BY data DESC LIMIT ".$start.", ".$num_elements;
-            $query = mysql_query($sel);
-            if(mysql_num_rows($query)>0){
+        $num_elements = 10;
+        $total = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.anons"), 0, 0);
+        $num_pages = $total > 0 ? ceil($total / $num_elements) : 1;
 
-			while($res = mysql_fetch_array($query)){
+        if ($p > $num_pages) $p = $num_pages;
+        if ($p < 1) $p = 1;
 
-$dtn = $res[data]; 
-$yyn = substr($dtn,0,4); // Год
-$mmn = substr($dtn,5,2); // Месяц
-$ddn = substr($dtn,8,2); // День
+        $start = ($p - 1) * $num_elements;
+        if ($start < 0) $start = 0;
 
-// Переназначаем переменные
-if ($mmn == "01") $mm1n="января";
-if ($mmn == "02") $mm1n="февраля";
-if ($mmn == "03") $mm1n="марта";
-if ($mmn == "04") $mm1n="апреля";
-if ($mmn == "05") $mm1n="мая";
-if ($mmn == "06") $mm1n="июня";
-if ($mmn == "07") $mm1n="июля";
-if ($mmn == "08") $mm1n="августа";
-if ($mmn == "09") $mm1n="сентября";
-if ($mmn == "10") $mm1n="октября";
-if ($mmn == "11") $mm1n="ноября";
-if ($mmn == "12") $mm1n="декабря";
+        echo '<div class="mb-3">' . GetNav($p, $num_pages, "anons") . '</div>';
 
-if ($ddn == "01") $ddn="1";
-if ($ddn == "02") $ddn="2";
-if ($ddn == "03") $ddn="3";
-if ($ddn == "04") $ddn="4";
-if ($ddn == "05") $ddn="5";
-if ($ddn == "06") $ddn="6";
-if ($ddn == "07") $ddn="7";
-if ($ddn == "08") $ddn="8";
-if ($ddn == "09") $ddn="9";
+        $sel = "SELECT * FROM host1409556_barysh.anons ORDER BY data DESC LIMIT $start, $num_elements";
+        $query = mysql_query($sel);
 
-$hours = substr($dtn,11,5); // Время 
+        if (mysql_num_rows($query) > 0) {
+            while ($res = mysql_fetch_assoc($query)) {
 
-$ddttn = '<span class="date">'.$ddn.' '.$mm1n.' '.$yyn.' г. '.$hours.'</span>'; // Конечный вид строки
+                $dtn = $res['data'];
+                $yyn = substr($dtn, 0, 4);
+                $mmn = substr($dtn, 5, 2);
+                $ddn = (int)substr($dtn, 8, 2);
 
-	$patterns = array ('/(?:\{{3})(http:\/\/[^\s\[<\(\)\|]+)(?:\}{3})-(?:\{{3})([^}]+)(?:\}{3})/i', '/\n/', '/(?:\/{3})/', '/(?:\|{3})/', '/@[^@]+@/', '/(?:\{{3})/', '/(?:\}{3})/');
-	$replace = array ('${2}', '</p><p>', '', '', '', '', '');
-	$text = preg_replace($patterns, $replace, $res[kratko]);
+                $months = [
+                    "01" => "СЏРЅРІР°СЂСЏ","02" => "С„РµРІСЂР°Р»СЏ","03" => "РјР°СЂС‚Р°","04" => "Р°РїСЂРµР»СЏ","05" => "РјР°СЏ","06" => "РёСЋРЅСЏ",
+                    "07" => "РёСЋР»СЏ","08" => "Р°РІРіСѓСЃС‚Р°","09" => "СЃРµРЅС‚СЏР±СЂСЏ","10" => "РѕРєС‚СЏР±СЂСЏ","11" => "РЅРѕСЏР±СЂСЏ","12" => "РґРµРєР°Р±СЂСЏ"
+                ];
 
-echo '<div style="float: left; margin-bottom: 10px; border-bottom: 1px #D7D7D7 solid"><div class="block_title"><span class="title"><a href="anons_show.php?data='.$res[data].'">'.$res[tema].'</a></span><br />'.$ddttn.'</div><div>';
+                $mm1n = isset($months[$mmn]) ? $months[$mmn] : "";
+                $date_text = $ddn . ' ' . $mm1n . ' ' . $yyn . ' РіРѕРґР°';
+                $time_text = substr($dtn, 11, 5);
 
-if ($res[oblozka]) echo '<div><img style="box-shadow: 2px 2px 5px rgba(0,0,0,0.3); display: inline;float: left;border: 1px solid #C3D7D4; margin: 0 10px 5px 10px; padding: 10px" src="FOTO_MINI/'.$res[oblozka].'.jpg" /></div>';
+                $patterns = [
+                    '/(?:\{{3})(http:\/\/[^\s\[<\(\)\|]+)(?:\}{3})-(?:\{{3})([^}]+)(?:\}{3})/i',
+                    '/\n/', '/(?:\/{3})/', '/(?:\|{3})/', '/@[^@]+@/', '/(?:\{{3})/', '/(?:\}{3})/'
+                ];
+                $replace = ['${2}', '</p><p>', '', '', '', '', ''];
+                $text = preg_replace($patterns, $replace, $res['kratko']);
 
-echo '<div style="margin-right: 5px"><p>'.$text.'</p><div class="zakladka" style="margin: 0 0 0 20px"><span class="views">Просмотров: '.$res[views].'.<br /><br /></span></div></div></div></div>';
-}
-}
+                $img_url = '';
+                if (!empty($res['oblozka'])) {
+                    $img_url = 'FOTO_MINI/' . $res['oblozka'] . '.jpg';
+                }
+        ?>
 
-  echo '<table width="100%"><tr><td>'.GetNav($p, $num_pages, "anons").'</td></tr></table><hr style="width: 100%" />';
+        <div class="news-item news-entry">
 
-?>
+            <div class="news-entry__frame">
+
+                <div class="news-entry__title-row">
+                    <a class="news-entry__title" href="anons_show.php?data=<?= $res['data'] ?>">
+                        <?= $res['tema'] ?>
+                    </a>
+                </div>
+
+                <div class="news-entry__content">
+
+                    <? if (!empty($img_url)) { ?>
+                        <div class="news-entry__image">
+                            <a href="anons_show.php?data=<?= $res['data'] ?>">
+                                <img src="<?= $img_url ?>" alt="">
+                            </a>
+                        </div>
+                    <? } ?>
+
+                    <div class="news-entry__text">
+
+                        <p><?= $text ?></p>
+
+                        <div class="news-entry__meta-item news-entry__views">
+                            <i class="fa-regular fa-calendar-days"></i> <?= $date_text ?>
+                            <i class="fa-regular fa-clock"></i> <?= $time_text ?>
+                            <i class="fa fa-eye"></i> <?= $res['views'] ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <?
+            } // while
+        } // if
+        ?>
+
+        <div class="mb-3">
+            <?= GetNav($p, $num_pages, "anons"); ?>
+        </div>
+
+    </div>
+
+    <? include 'footer.php'; ?>
+
 </div>
 
-<?
-include 'footer.php';
-?>
-
- </div>
 </body>
 </html>
