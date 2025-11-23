@@ -49,7 +49,7 @@ $slovo = getSlovoPadre();
 
 <head>
     <?php include 'head.php'; ?>
-    <title> </title>
+    <title> Барышская епархия </title>
 
     
 </head>
@@ -69,7 +69,7 @@ $slovo = getSlovoPadre();
 
 
 
-                <!--    -->
+                <!-- КРЕСТНЫЙ ХОД СЕГОДНЯ -->
                 <?php if ($hod_today && mysql_num_rows($hod_today) > 0): ?>
                     <div class="card procession-card">
                         <div class="section-title text-center">   </div>
@@ -79,7 +79,7 @@ $slovo = getSlovoPadre();
                             $time_now = date("H:i");
                             while ($hod = mysql_fetch_array($hod_today)):
                                 if ($hod['pribyv'] == '00:00' && $hod['otbyv'] == '24:00') {
-                                    $range = ' ';
+                                   $range = 'Весь день';
                                 } else {
                                     $range = $hod['pribyv'] . ' - ' . $hod['otbyv'];
                                 }
@@ -96,12 +96,12 @@ $slovo = getSlovoPadre();
                         </div>
 
                         <div class="procession-footer">
-                            <a href="hod.php?year=<?= date('Y') ?>#<?= date('Y.m.d') ?>">   </a>
+                            <a href="hod.php?year=<?= date('Y') ?>#<?= date('Y.m.d') ?>"> Полное расписание и фотоотчёты </a>
                         </div>
                     </div>
                 <?php endif; ?>
 
-                <!--   -->
+                <!-- КАЛЕНДАРЬ ЕПАРХИИ -->
                 <?php
                 $yesterday = strtotime("-1 day");
 
@@ -110,7 +110,7 @@ $slovo = getSlovoPadre();
                 ;
                 ?>
                 <div class="card calendar-card">
-                    <div class="section-title text-center"> </div>
+                    <div class="section-title text-center"> Календарь епархии</div>
 
                     <div class="calendar-date-today">
                         <?= $day ?> <?= $mon ?>
@@ -135,21 +135,21 @@ $slovo = getSlovoPadre();
 
                     <?php if (!empty($prestoly)): ?>
                         <div id="calendar">
-                            <h2> </h2>
+                            <h2> Престольный праздник</h2>
                             <?= implode('', $prestoly) ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (empty($prestoly) && empty($calendar)): ?>
-                        <p>  </p>
+                        <p> Сегодня событий нет </p>
                     <?php endif; ?>
 
                     <div class="calendar-footer">
-                        <a class="link-muted" href="/kalendar.php?month=<?= date('m') ?>"> </a>
+                        <a class="link-muted" href="/kalendar.php?month=<?= date('m') ?>"> Весь календарь </a>
                     </div>
                 </div>
 
-                <!--  /   -->
+                <!-- РЕКЛАМНЫЕ / ИНФО БЛОКИ -->
                 <div class="card card--centered promo-block">
                     <a href="/prihod.php?id=21">
                         <img src="/IMG/glotovka.png" alt="">
@@ -168,10 +168,10 @@ $slovo = getSlovoPadre();
                     </a>
                 </div>
 
-                <!--  -->
+                <!-- АНОНСЫ -->
                 <div class="card">
                     <h2 class="section-title">
-                        <a href="anons.php">  </a>
+                        <a href="anons.php">Анонсы и объявления</a>
                     </h2>
 
                     <?php while ($a = mysql_fetch_array($anons)): ?>
@@ -189,7 +189,7 @@ $slovo = getSlovoPadre();
                                 </span><br>
                                 <span class="date"><?= $d ?>     <?= $m ?>     <?= $y ?> . <?= $time ?></span>
                                 <span class="meta">
-                                    <img src="IMG/views.png" alt="">
+                                    <i class="fa fa-eye" aria-hidden="true">    </i>
                                     <?= $a['views'] ?>
                                 </span>
                             </div>
@@ -202,12 +202,12 @@ $slovo = getSlovoPadre();
 
             </aside>
 
-            <!-- ================================
-                (  +  + )
+          <!-- ================================
+              ЛЕВАЯ КОЛОНКА (НОВОСТЬ ДНЯ + МИКС + ПУБЛИКАЦИИ)
         ================================= -->
             <section class="main-column">
 
-                <!--   -->
+               <!-- НОВОСТЬ ДНЯ -->
                 <div id="new_day" class="card clearfix">
                     <?php
                     // NEWS DAY DATE FORMAT
@@ -249,21 +249,21 @@ $slovo = getSlovoPadre();
                     </div>
                 </div>
 
-                <!--  /  -->
+                <!-- НОВОСТИ / ПУБЛИКАЦИИ -->
                 <div class="card news-list-block">
 
-                    <!-- - -->
+                    <!-- Заголовки-вкладки -->
                     <div class="tab-head">
                         <a id="newsTab" class="active" onclick="toggleTab('news', 'news.php')">
-                             
+                            Новости епархии  
                         </a>
 
                         <a id="pubTab" onclick="toggleTab('pub', 'pub.php')">
-                            
+                            Публикации 
                         </a>
                     </div>
 
-                    <!-- >>>   <<< -->
+                    <!-- >>> БЛОК НОВОСТЕЙ <<< -->
                     <div id="newsBlock">
 
                         <?php while ($row = mysql_fetch_array($mix)): ?>
@@ -289,7 +289,7 @@ $slovo = getSlovoPadre();
                                         <span class="date"><?= $date ?></span>
                                         <span class="meta">
                                             <?php if ($row['source'] == 'local' && $row['video']): ?>
-                                                (+ )
+                                                (+ Видео)
                                             <?php endif; ?>
 
                                             <?php if ($row['source'] == 'local'): ?>
@@ -337,7 +337,7 @@ $slovo = getSlovoPadre();
                     </div>
 
 
-                    <!-- >>>   <<< -->
+                    <!-- >>> БЛОК ПУБЛИКАЦИЙ <<< -->
                     <div id="pubBlock">
 
                         <?php while ($pub = mysql_fetch_array($publish)): ?>
@@ -357,7 +357,7 @@ $slovo = getSlovoPadre();
                                     <span class="date"><?= $date ?></span>
 
                                     <span class="meta">
-                                        <img src="IMG/views.png" alt="">
+                                        <i class="fa fa-eye" aria-hidden="true">    </i>
                                         <?= $pub['views'] ?>
                                     </span>
                                 </div>
@@ -384,10 +384,10 @@ $slovo = getSlovoPadre();
                 </div>
 
 
-                <!--   -->
+                <!-- СЛОВО АРХИПАСТЫРЯ -->
                 <div class="card">
                     <h2 class="section-title">
-                        <a href="slovo_padre.php"> </a>
+                        <a href="slovo_padre.php">Слово архипастыря </a>
                     </h2>
 
                     <?php while ($sl = mysql_fetch_array($slovo)): ?>
@@ -420,10 +420,10 @@ $slovo = getSlovoPadre();
                     <?php endwhile; ?>
                 </div>
 
-                <!--  -->
+                <!-- ВИДЕО -->
                 <div class="card video-section">
                     <h2 class="section-title">
-                        <a href="video.php"></a>
+                        <a href="video.php">Видео</a>
                     </h2>
                     <?= $videosHTML ?>
                 </div>
