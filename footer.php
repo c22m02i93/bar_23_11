@@ -75,12 +75,6 @@
   </div>
 </div>
 
-<script>
-window.addEventListener('scroll', function(){
-  const btn = document.getElementById('toTop');
-  if(window.scrollY > 300){ btn.style.display = 'flex'; }
-  else { btn.style.display = 'none'; }
-});
-</script>
+
 
 <!--/noindex-->
