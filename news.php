@@ -7,9 +7,9 @@ $name_user = $_SESSION['name_user'];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <? include 'head.php'; ?>
-    <title> </title>
+    title>Новости епархии</title>
 
-    <!--   -->
+    <!-- Новые стили -->
     <link rel="stylesheet" href="/Index1.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/all.min.css">
@@ -27,10 +27,10 @@ $name_user = $_SESSION['name_user'];
 
     <div id="osnovnoe" class="main-column card news-list-block">
 
-        <h1 class="section-title"> </h1>
+        <h1 class="section-title"> Новости епархии </h1>
 
         <?
-        //
+        // Номер страницы
         if (!isset($_GET['page'])) {
             $p = 1;
         } else {
@@ -39,10 +39,10 @@ $name_user = $_SESSION['name_user'];
         }
 
         $num_elements = 10;
-        //
+        // Отбор новостей митрополии после отсечки
         $cutoff = "2025-11-01 00:00:00";
 
-        //     ( + )
+        //  Подсчёт общего числа новостей (местные + митрополия)
         $total_local = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.news_eparhia"), 0, 0);
         $total_external = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.news_mitropolia WHERE section='barysh_tag' AND data >= '$cutoff'"), 0, 0);
 
@@ -55,10 +55,10 @@ $name_user = $_SESSION['name_user'];
         $start = ($p - 1) * $num_elements;
         if ($start < 0) $start = 0;
 
-        //
+        // Навигация сверху
         echo '<div class="mb-3">' . GetNav($p, $num_pages, "news") . '</div>';
 
-        //  :   +
+        //Общий запрос: местные новости + митрополия
         $sel = "
             SELECT * FROM (
                 SELECT data, tema, kratko, oblozka, video, views, NULL AS link, 'local' AS source
@@ -92,7 +92,7 @@ $name_user = $_SESSION['name_user'];
 
                 $text = $row['kratko'];
 
-                //   :      -
+                // Преобразование краткого текста: локальные новости и новости митрополии по-разному
                 if ($row['source'] == 'local') {
                     $patterns = [
                         '/(?:\{{3})(http:\/\/[^\s\[<\(\)\|]+)(?:\}{3})-(?:\{{3})([^}]+)(?:\}{3})/i',
@@ -107,7 +107,7 @@ $name_user = $_SESSION['name_user'];
                 $title_link = ($row['source'] == 'local') ? 'news_show.php?data=' . $row['data'] : $row['link'];
                 $target = ($row['source'] == 'local') ? '_self' : '_blank';
 
-                //
+                // Обложка
                 $img_url = '';
                 if (!empty($row['oblozka'])) {
                     if ($row['source'] == 'local') {
