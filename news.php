@@ -7,9 +7,9 @@ $name_user = $_SESSION['name_user'];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <? include 'head.php'; ?>
-    <title>Новости епархии</title>
+    <title> </title>
 
-    <!-- Новые стили -->
+    <!--   -->
     <link rel="stylesheet" href="/Index1.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/all.min.css">
@@ -27,10 +27,10 @@ $name_user = $_SESSION['name_user'];
 
     <div id="osnovnoe" class="main-column card news-list-block">
 
-        <h1 class="section-title">Новости епархии</h1>
+        <h1 class="section-title"> </h1>
 
         <?
-        // Номер страницы
+        //
         if (!isset($_GET['page'])) {
             $p = 1;
         } else {
@@ -39,10 +39,10 @@ $name_user = $_SESSION['name_user'];
         }
 
         $num_elements = 10;
-        // Отбор новостей митрополии после отсечки
+        //
         $cutoff = "2025-11-01 00:00:00";
 
-        // Подсчёт общего числа новостей (местные + митрополия)
+        //     ( + )
         $total_local = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.news_eparhia"), 0, 0);
         $total_external = mysql_result(mysql_query("SELECT COUNT(*) FROM host1409556_barysh.news_mitropolia WHERE section='barysh_tag' AND data >= '$cutoff'"), 0, 0);
 
@@ -55,10 +55,10 @@ $name_user = $_SESSION['name_user'];
         $start = ($p - 1) * $num_elements;
         if ($start < 0) $start = 0;
 
-        // Навигация сверху
+        //
         echo '<div class="mb-3">' . GetNav($p, $num_pages, "news") . '</div>';
 
-        // Общий запрос: местные новости + митрополия
+        //  :   +
         $sel = "
             SELECT * FROM (
                 SELECT data, tema, kratko, oblozka, video, views, NULL AS link, 'local' AS source
@@ -83,15 +83,16 @@ $name_user = $_SESSION['name_user'];
                 $ddn = (int)substr($dtn, 8, 2);
 
                 $months = [
-                    "01" => "января", "02" => "февраля", "03" => "марта", "04" => "апреля",
-                    "05" => "мая", "06" => "июня", "07" => "июля", "08" => "августа",
-                    "09" => "сентября", "10" => "октября", "11" => "ноября", "12" => "декабря"
+                    "01" => "СЏРЅРІР°СЂСЏ", "02" => "С„РµРІСЂР°Р»СЏ", "03" => "РјР°СЂС‚Р°", "04" => "Р°РїСЂРµР»СЏ", "05" => "РјР°СЏ", "06" => "РёСЋРЅСЏ",
+                    "07" => "РёСЋР»СЏ", "08" => "Р°РІРіСѓСЃС‚Р°", "09" => "СЃРµРЅС‚СЏР±СЂСЏ", "10" => "РѕРєС‚СЏР±СЂСЏ", "11" => "РЅРѕСЏР±СЂСЏ", "12" => "РґРµРєР°Р±СЂСЏ"
                 ];
                 $mm1n = isset($months[$mmn]) ? $months[$mmn] : "";
+                $date_text = $ddn . ' ' . $mm1n . ' ' . $yyn . ' РіРѕРґР°';
+                $time_text = substr($dtn, 11, 5);
 
                 $text = $row['kratko'];
 
-                // Преобразование краткого текста: локальные новости и новости митрополии по-разному
+                //   :      -
                 if ($row['source'] == 'local') {
                     $patterns = [
                         '/(?:\{{3})(http:\/\/[^\s\[<\(\)\|]+)(?:\}{3})-(?:\{{3})([^}]+)(?:\}{3})/i',
@@ -106,7 +107,7 @@ $name_user = $_SESSION['name_user'];
                 $title_link = ($row['source'] == 'local') ? 'news_show.php?data=' . $row['data'] : $row['link'];
                 $target = ($row['source'] == 'local') ? '_self' : '_blank';
 
-                // Обложка
+                //
                 $img_url = '';
                 if (!empty($row['oblozka'])) {
                     if ($row['source'] == 'local') {
@@ -123,43 +124,45 @@ $name_user = $_SESSION['name_user'];
                 }
         ?>
 
-        <div class="news-item">
+        <div class="news-item news-entry">
 
-            <div class="news-item-header">
-                <span class="title">
-                    <a href="<?= $title_link ?>" target="<?= $target ?>">
+            <div class="news-entry__frame">
+                <div class="news-entry__title-row">
+                    <span class="news-entry__bullet"></span>
+                    <a class="news-entry__title" href="<?= $title_link ?>" target="<?= $target ?>">
                         <?= $row['tema'] ?>
                     </a>
-                </span>
+                </div>
 
-                <div class="news-item-meta">
-                    <span class="date"><?= $ddn . ' ' . $mm1n . ' ' . $yyn ?></span>
-
-                    <? if ($row['source'] == 'local' && $row['video']) { ?>
-                        <span class="meta"><i class="fa fa-film"></i> Видео</span>
+                <div class="news-entry__meta">
+                    <span class="news-entry__meta-item"><i class="fa-regular fa-calendar-days"></i> <?= $date_text ?></span>
+                    <? if (!empty($time_text)) { ?>
+                        <span class="news-entry__meta-item"><i class="fa-regular fa-clock"></i> <?= $time_text ?></span>
                     <? } ?>
-
+                    <? if ($row['source'] == 'local' && $row['video']) { ?>
+                        <span class="news-entry__meta-item news-entry__meta-pill"><i class="fa fa-film"></i> Р’РёРґРµРѕ</span>
+                    <? } ?>
                     <? if ($row['source'] == 'mitropolia') { ?>
-                        <span class="meta"><i class="fa fa-globe"></i> митрополия</span>
+                        <span class="news-entry__meta-item news-entry__meta-pill"><i class="fa fa-globe"></i> РњРёС‚СЂРѕРїРѕР»РёСЏ</span>
                     <? } ?>
                 </div>
-            </div>
 
-            <div class="news-item-body">
-                <? if (!empty($img_url)) { ?>
-                    <div class="news-item-image">
-                        <a href="<?= $title_link ?>" target="<?= $target ?>">
-                            <img src="<?= $img_url ?>" alt="">
-                        </a>
+                <div class="news-entry__content">
+                    <div class="news-entry__text">
+                        <p><?= $text ?></p>
+
+                        <? if ($row['source'] == 'local') { ?>
+                            <div class="news-entry__meta-item news-entry__views">
+                                <i class="fa fa-eye"></i> <?= $row['views'] ?>
+                            </div>
+                        <? } ?>
                     </div>
-                <? } ?>
 
-                <div class="news-item-text">
-                    <p><?= $text ?></p>
-
-                    <? if ($row['source'] == 'local') { ?>
-                        <div class="meta">
-                            <i class="fa fa-eye"></i> <?= $row['views'] ?> просмотров
+                    <? if (!empty($img_url)) { ?>
+                        <div class="news-entry__image">
+                            <a href="<?= $title_link ?>" target="<?= $target ?>">
+                                <img src="<?= $img_url ?>" alt="">
+                            </a>
                         </div>
                     <? } ?>
                 </div>
