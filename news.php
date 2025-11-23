@@ -7,7 +7,7 @@ $name_user = $_SESSION['name_user'];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <? include 'head.php'; ?>
-    title>Новости епархии</title>
+    <title>Новости епархии</title>
 
     <!-- Новые стили -->
     <link rel="stylesheet" href="/Index1.css">
@@ -128,16 +128,29 @@ $name_user = $_SESSION['name_user'];
 
             <div class="news-entry__frame">
                 <div class="news-entry__title-row">
-                    <span class="news-entry__bullet"></span>
+                    <span class="news-entry"></span>
                     <a class="news-entry__title" href="<?= $title_link ?>" target="<?= $target ?>">
                         <?= $row['tema'] ?>
                     </a>
                 </div>
 
                 <div class="news-entry__meta">
-                    <span class="news-entry__meta-item"><i class="fa-regular fa-calendar-days"></i> <?= $date_text ?></span>
+                    
+                </div>
+
+                <div class="news-entry__content">
+                     <? if (!empty($img_url)) { ?>
+                        <div class="news-entry__image">
+                            <a href="<?= $title_link ?>" target="<?= $target ?>">
+                                <img src="<?= $img_url ?>" alt="">
+                            </a>
+                        </div>
+                    <? } ?>
+
+                    <div class="news-entry__text">
+                        
                     <? if (!empty($time_text)) { ?>
-                        <span class="news-entry__meta-item"><i class="fa-regular fa-clock"></i> <?= $time_text ?></span>
+                        
                     <? } ?>
                     <? if ($row['source'] == 'local' && $row['video']) { ?>
                         <span class="news-entry__meta-item news-entry__meta-pill"><i class="fa fa-film"></i> Видео</span>
@@ -145,12 +158,10 @@ $name_user = $_SESSION['name_user'];
                     <? if ($row['source'] == 'mitropolia') { ?>
                         <span class="news-entry__meta-item news-entry__meta-pill"><i class="fa fa-globe"></i> Митрополия</span>
                     <? } ?>
-                </div>
-
-                <div class="news-entry__content">
-                    <div class="news-entry__text">
                         <p><?= $text ?></p>
-
+                            
+                        <span class="news-entry__meta-item"><i class="fa-regular fa-calendar-days"></i> <?= $date_text ?>
+                        <i class="fa-regular fa-clock"></i> <?= $time_text ?></span>
                         <? if ($row['source'] == 'local') { ?>
                             <div class="news-entry__meta-item news-entry__views">
                                 <i class="fa fa-eye"></i> <?= $row['views'] ?>
@@ -158,13 +169,7 @@ $name_user = $_SESSION['name_user'];
                         <? } ?>
                     </div>
 
-                    <? if (!empty($img_url)) { ?>
-                        <div class="news-entry__image">
-                            <a href="<?= $title_link ?>" target="<?= $target ?>">
-                                <img src="<?= $img_url ?>" alt="">
-                            </a>
-                        </div>
-                    <? } ?>
+                   
                 </div>
             </div>
 
