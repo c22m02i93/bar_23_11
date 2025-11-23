@@ -32,156 +32,238 @@ foreach ($vars as $v) {
 <div class="main-nav">
     <ul class="nav-level-1">
 
-        <!-- АРХИЕРЕЙ -->
+        <!-- ГЂГђГ•Г€Г…ГђГ…Г‰ -->
         <li class="has-sub">
-            <a class="nav-main-link">Архиерей</a>
+            <a class="nav-main-link">ГЂГ°ГµГЁГҐГ°ГҐГ©</a>
             <ul class="nav-level-2">
 
                 <li <?= $arhi == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $arhi == 'yes' ? '' : 'href="arhierei.php"' ?>>Биография</a>
+                    <a <?= $arhi == 'yes' ? '' : 'href="arhierei.php"' ?>>ГЃГЁГ®ГЈГ°Г ГґГЁГї</a>
                 </li>
 
                 <li <?= $slovo_padre == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $slovo_padre == 'yes' ? '' : 'href="slovo_padre.php"' ?>>Слово архипастыря</a>
+                    <a <?= $slovo_padre == 'yes' ? '' : 'href="slovo_padre.php"' ?>>Г‘Г«Г®ГўГ® Г Г°ГµГЁГЇГ Г±ГІГ»Г°Гї</a>
                 </li>
 
                 <li <?= $raspisanie == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $raspisanie == 'yes' ? '' : 'href="raspisanie.php"' ?>>Служение</a>
+                    <a <?= $raspisanie == 'yes' ? '' : 'href="raspisanie.php"' ?>>Г‘Г«ГіГ¦ГҐГ­ГЁГҐ</a>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- НОВОСТИ -->
+        <!-- ГЌГЋГ‚ГЋГ‘Г’Г€ -->
         <li class="has-sub">
-            <a class="nav-main-link">Новости</a>
+            <a class="nav-main-link">ГЌГ®ГўГ®Г±ГІГЁ</a>
             <ul class="nav-level-2">
 
                 <li <?= $new == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $new == 'yes' ? '' : 'href="news.php"' ?>>Новости епархии</a>
+                    <a <?= $new == 'yes' ? '' : 'href="news.php"' ?>>ГЌГ®ГўГ®Г±ГІГЁ ГҐГЇГ Г°ГµГЁГЁ</a>
                 </li>
 
                 <li <?= $anons == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $anons == 'yes' ? '' : 'href="anons.php"' ?>>Анонсы и объявления</a>
+                    <a <?= $anons == 'yes' ? '' : 'href="anons.php"' ?>>ГЂГ­Г®Г­Г±Г» ГЁ Г®ГЎГєГїГўГ«ГҐГ­ГЁГї</a>
                 </li>
 
                 <li <?= $pub == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $pub == 'yes' ? '' : 'href="pub.php"' ?>>Публикации</a>
+                    <a <?= $pub == 'yes' ? '' : 'href="pub.php"' ?>>ГЏГіГЎГ«ГЁГЄГ Г¶ГЁГЁ</a>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- ДОКУМЕНТЫ -->
+        <!-- Г„ГЋГЉГ“ГЊГ…ГЌГ’Г› -->
         <li class="has-sub">
-            <a class="nav-main-link">Документы</a>
+            <a class="nav-main-link">Г„Г®ГЄГіГ¬ГҐГ­ГІГ»</a>
             <ul class="nav-level-2">
 
                 <li <?= $tip == 'ukaz' ? 'class="active"' : '' ?>>
-                    <a <?= $tip == 'ukaz' ? '' : 'href="doks.php?tip=ukaz"' ?>>Указы</a>
+                    <a <?= $tip == 'ukaz' ? '' : 'href="doks.php?tip=ukaz"' ?>>Г“ГЄГ Г§Г»</a>
                 </li>
 
                 <li <?= $tip == 'raspor' ? 'class="active"' : '' ?>>
-                    <a <?= $tip == 'raspor' ? '' : 'href="doks.php?tip=raspor"' ?>>Распоряжения</a>
+                    <a <?= $tip == 'raspor' ? '' : 'href="doks.php?tip=raspor"' ?>>ГђГ Г±ГЇГ®Г°ГїГ¦ГҐГ­ГЁГї</a>
                 </li>
 
                 <li <?= $tip == 'cirk' ? 'class="active"' : '' ?>>
-                    <a <?= $tip == 'cirk' ? '' : 'href="doks.php?tip=cirk"' ?>>Циркуляры</a>
+                    <a <?= $tip == 'cirk' ? '' : 'href="doks.php?tip=cirk"' ?>>Г–ГЁГ°ГЄГіГ«ГїГ°Г»</a>
                 </li>
 
                 <li <?= $tip == 'udostoverenie' ? 'class="active"' : '' ?>>
-                    <a <?= $tip == 'udostoverenie' ? '' : 'href="doks.php?tip=udostoverenie"' ?>>Удостоверения</a>
+                    <a <?= $tip == 'udostoverenie' ? '' : 'href="doks.php?tip=udostoverenie"' ?>>Г“Г¤Г®Г±ГІГ®ГўГҐГ°ГҐГ­ГЁГї</a>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- ЕПАРХИЯ -->
+        <!-- Г…ГЏГЂГђГ•Г€Гџ -->
         <li class="has-sub">
-            <a class="nav-main-link">Епархия</a>
+            <a class="nav-main-link">Г…ГЇГ Г°ГµГЁГї</a>
             <ul class="nav-level-2">
 
                 <li <?= $histor == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $histor == 'yes' ? '' : 'href="histor.php"' ?>>История</a>
+                    <a <?= $histor == 'yes' ? '' : 'href="histor.php"' ?>>Г€Г±ГІГ®Г°ГЁГї</a>
                 </li>
 
                 <li <?= $barysh == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $barysh == 'yes' ? '' : 'href="barysh.php"' ?>>Архиереи Барышской епархии</a>
+                    <a <?= $barysh == 'yes' ? '' : 'href="barysh.php"' ?>>ГЂГ°ГµГЁГҐГ°ГҐГЁ ГЃГ Г°Г»ГёГ±ГЄГ®Г© ГҐГЇГ Г°ГµГЁГЁ</a>
                 </li>
 
                 <li <?= $upravlenie == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $upravlenie == 'yes' ? '' : 'href="upravlenie.php"' ?>>Управление</a>
+                    <a <?= $upravlenie == 'yes' ? '' : 'href="upravlenie.php"' ?>>Г“ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ</a>
                 </li>
 
                 <li <?= $otdel == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $otdel == 'yes' ? '' : 'href="otdel.php"' ?>>Отделы</a>
+                    <a <?= $otdel == 'yes' ? '' : 'href="otdel.php"' ?>>ГЋГІГ¤ГҐГ«Г»</a>
                 </li>
 
                 <li <?= $klir == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $klir == 'yes' ? '' : 'href="klir.php"' ?>>Духовенство</a>
+                    <a <?= $klir == 'yes' ? '' : 'href="klir.php"' ?>>Г„ГіГµГ®ГўГҐГ­Г±ГІГўГ®</a>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- ПРИХОДЫ -->
+        <!-- ГЏГђГ€Г•ГЋГ„Г› -->
         <li class="has-sub">
-            <a class="nav-main-link">Приходы</a>
+            <a class="nav-main-link">ГЏГ°ГЁГµГ®Г¤Г»</a>
             <ul class="nav-level-2">
 
                 <li <?= $mon == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $mon == 'yes' ? '' : 'href="mon.php"' ?>>Жадовский монастырь</a>
+                    <a <?= $mon == 'yes' ? '' : 'href="mon.php"' ?>>Г†Г Г¤Г®ГўГ±ГЄГЁГ© Г¬Г®Г­Г Г±ГІГ»Г°Гј</a>
                 </li>
 
                 <li <?= $prihods == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $prihods == 'yes' ? '' : 'href="prihods.php"' ?>>Действующие приходы</a>
+                    <a <?= $prihods == 'yes' ? '' : 'href="prihods.php"' ?>>Г„ГҐГ©Г±ГІГўГіГѕГ№ГЁГҐ ГЇГ°ГЁГµГ®Г¤Г»</a>
                 </li>
 
                 <li <?= $old_prihods == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $old_prihods == 'yes' ? '' : 'href="old_prihods.php"' ?>>Разрушенные храмы</a>
+                    <a <?= $old_prihods == 'yes' ? '' : 'href="old_prihods.php"' ?>>ГђГ Г§Г°ГіГёГҐГ­Г­Г»ГҐ ГµГ°Г Г¬Г»</a>
                 </li>
 
                 <li <?= $map == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $map == 'yes' ? '' : 'href="map.php"' ?>>Карта приходов</a>
+                    <a <?= $map == 'yes' ? '' : 'href="map.php"' ?>>ГЉГ Г°ГІГ  ГЇГ°ГЁГµГ®Г¤Г®Гў</a>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- МЕДИА -->
+        <!-- ГЊГ…Г„Г€ГЂ -->
         <li class="has-sub">
-            <a class="nav-main-link">Медиа</a>
+            <a class="nav-main-link">ГЊГҐГ¤ГЁГ </a>
             <ul class="nav-level-2">
 
                 <li <?= $video == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $video == 'yes' ? '' : 'href="video.php"' ?>>Видео</a>
+                    <a <?= $video == 'yes' ? '' : 'href="video.php"' ?>>Г‚ГЁГ¤ГҐГ®</a>
                 </li>
 
                 <li <?= $gazeta == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $gazeta == 'yes' ? '' : 'href="gazeta.php"' ?>>Газета «Моя епархия»</a>
-                </li>
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    position: relative;
+    z-index: 1200;
+    margin: 0 auto;
+    max-width: 1100px;
+    width: 100%;
+/*  */
 
-                <li <?= $radio == 'yes' ? 'class="active"' : '' ?>>
-                    <a <?= $radio == 'yes' ? '' : 'href="sv_vecher.php"' ?>>Радио «Светлый вечер»</a>
+/*     */
+
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1100;
+    pointer-events: none;
+}
+
+.mobile-menu-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+@media (max-width: 960px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 80%;
+        max-width: 330px;
+        padding: 110px 18px 28px;
+        box-shadow: 8px 0 26px rgba(0, 0, 0, 0.18);
+        border-right: 1px solid #e7d8d0;
+        background: linear-gradient(180deg, #fff8f5 0%, #f2e1da 100%);
+        transform: translateX(-105%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .main-nav.is-open {
+        transform: translateX(0);
+    }
+
+    .nav-level-1 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 0;
+    }
+
+    .nav-level-1 > li {
+        width: 100%;
+    }
+
+    .nav-level-1 > li > a.nav-main-link {
+        display: block;
+        width: 100%;
+    }
+
+    .nav-level-2 {
+        display: block;
+        position: static;
+        min-width: auto;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        padding: 6px 0 0 12px;
+    }
+
+    .nav-level-2 li a {
+        padding: 6px 0;
+    }
+
+    .has-sub:hover .nav-level-2 {
+        display: block;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+</style>
                 </li>
 
             </ul>
         </li>
 
 
-        <!-- КОНТАКТЫ -->
+        <!-- ГЉГЋГЌГ’ГЂГЉГ’Г› -->
         <li <?= $kontakt == 'yes' ? 'class="active"' : '' ?>>
-            <a <?= $kontakt == 'yes' ? '' : 'href="kontakt.php"' ?>>Контакты</a>
+            <a <?= $kontakt == 'yes' ? '' : 'href="kontakt.php"' ?>>ГЉГ®Г­ГІГ ГЄГІГ»</a>
         </li>
 
-        <!-- ЧИТАЕМОЕ -->
+        <!-- Г—Г€Г’ГЂГ…ГЊГЋГ… -->
         <li <?= $top == 'yes' ? 'class="active"' : '' ?>>
-            <a <?= $top == 'yes' ? 'style="color:#b33;opacity:.8"' : 'href="top.php"' ?>>Читаемое</a>
+            <a <?= $top == 'yes' ? 'style="color:#b33;opacity:.8"' : 'href="top.php"' ?>>Г—ГЁГІГ ГҐГ¬Г®ГҐ</a>
         </li>
 
     </ul>
@@ -220,7 +302,7 @@ foreach ($vars as $v) {
     color: #9b4747;
 }
 
-/* Подменю */
+/* ГЏГ®Г¤Г¬ГҐГ­Гѕ */
 .nav-level-2 {
     display: none;
     position: absolute;
@@ -257,7 +339,7 @@ foreach ($vars as $v) {
     color: #8f3d3d;
 }
 
-/* Активный пункт верхнего меню */
+/* ГЂГЄГІГЁГўГ­Г»Г© ГЇГіГ­ГЄГІ ГўГҐГ°ГµГ­ГҐГЈГ® Г¬ГҐГ­Гѕ */
 .nav-level-1 > li.active > a {
     color: #b04040 !important;
 }

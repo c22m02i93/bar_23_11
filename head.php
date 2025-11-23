@@ -61,19 +61,25 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
             </div>
+
+            <button class="head__burger" id="mobile-menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
 
         <!--  +  -->
         <div class="head__branding">
-            <a href="/"><img class="head__logo" src="/IMG/logo.png" loading="lazy"></a>
+            <a href="/"><img class="head__logo" src="/IMG/logo.png" loading="lazy" alt="Логотип"></a>
 
             <div class="head__text">
                 <div class="head__title">
-
+                    Русская Православная Церковь – Симбирская митрополия
                 </div>
 
                 <div class="head__subtitle">
-                          , <br>
+                    БАРЫШСКАЯ ЕПАРХИЯ
                 </div>
             </div>
         </div>
@@ -121,5 +127,43 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.querySelector('.gallery')) {
         baguetteBox.run('.gallery');
     }
+
+    const burger = document.getElementById('mobile-menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const body = document.body;
+
+    const closeMenu = () => {
+        if (!nav) return;
+        nav.classList.remove('is-open');
+        burger && burger.classList.remove('is-active');
+        burger && burger.setAttribute('aria-expanded', 'false');
+        overlay && overlay.classList.remove('is-visible');
+        body.classList.remove('menu-open');
+    };
+
+    const toggleMenu = () => {
+        if (!nav) return;
+        const willOpen = !nav.classList.contains('is-open');
+        nav.classList.toggle('is-open');
+        burger && burger.classList.toggle('is-active');
+        burger && burger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        overlay && overlay.classList.toggle('is-visible');
+        body.classList.toggle('menu-open', willOpen);
+    };
+
+    if (burger && nav) {
+        burger.addEventListener('click', toggleMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 960) {
+            closeMenu();
+        }
+    });
 });
 </script>
