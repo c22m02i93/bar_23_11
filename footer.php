@@ -1,5 +1,3 @@
-<!--noindex-->
-
 <a id="toTop" href="#">?</a>
 
 <div id="footer">
@@ -9,50 +7,45 @@
       <div class="footer-grid">
 
         <div class="footer-col">
-          <h3></h3>
-          <a href="arhierei.php"></a>
-          <a href="slovo_padre.php"> </a>
-          <a href="raspisanie.php"></a>
+          <h3>Архиерей</h3>
+          <a href="arhierei.php">Биография</a>
+          <a href="slovo_padre.php">Слово архипастыря</a>
+          <a href="raspisanie.php">Служение</a>
         </div>
 
         <div class="footer-col">
-          <h3></h3>
-          <a href="news.php"> </a>
-          <a href="anons.php"></a>
-          <a href="pub.php"></a>
+          <h3>Новости</h3>
+          <a href="news.php">Новости епархии</a>
+          <a href="anons.php">Анонсы</a>
+          <a href="pub.php">Публикации</a>
         </div>
 
         <div class="footer-col">
-          <h3></h3>
-          <a href="video.php"></a>
-          <a href="sv_vecher.php">  </a>
+          <h3>Документы</h3>
+          <a href="doks.php?tip=ukaz">Указы</a>
+          <a href="doks.php?tip=raspor">Распоряжения</a>
+          <a href="doks.php?tip=cirk">Циркуляры</a>
+          <a href="doks.php?tip=udostoverenie">Удостоверения</a>
         </div>
 
         <div class="footer-col">
-          <h3></h3>
-          <a href="doks.php?tip=ukaz"></a>
-          <a href="doks.php?tip=raspor"></a>
-          <a href="doks.php?tip=cirk"></a>
-          <a href="doks.php?tip=udostoverenie"></a>
+          <h3>Епархия</h3>
+          <a href="histor.php">История</a>
+          <a href="upravlenie.php">Управление</a>
+          <a href="otdel.php">Отделы</a>
         </div>
 
-        <div class="footer-col">
-          <h3></h3>
-          <a href="histor.php"></a>
-          <a href="upravlenie.php"></a>
-          <a href="otdel.php"></a>
+         <div class="footer-col">
+          <h3>Приходы</h3>
+          <a href="mon.php">Жадовский монастырь</a>
+          <a href="prihods.php">Действующие приходы</a>
+          <a href="old_prihods.php">Разрушенные храмы</a>
+          <a href="map.php">Карта приходов</a>
         </div>
 
+        
         <div class="footer-col">
-          <h3></h3>
-          <a href="mon.php"> </a>
-          <a href="prihods.php"> </a>
-          <a href="old_prihods.php"> </a>
-          <a href="map.php"> </a>
-        </div>
-
-        <div class="footer-col">
-          <h3><a href="kontakt.php"></a></h3>
+          <h3><a href="kontakt.php">Контакты</a></h3>
         </div>
 
       </div>
@@ -70,11 +63,11 @@
       </div>
 
       <div class="footer-bottom">
-          <span class="footer-bottom-text">  , 2012  <?php echo date("Y"); ?> .   : <a href="mailto:zhidkoff@list.ru"> </a></span>
+          <span class="footer-bottom-text">© Барышская епархия, 2012 –  <?php echo date("Y"); ?> гг. · Создание сайта:<a href="mailto:zhidkoff@list.ru"> Сергей Жидков </a></span>
         <?php
           list($msec,$sec)=explode(chr(32),microtime());
           $skor_gen=(round(($sec+$msec)-$mTimeStart,4));
-          echo '<span class="footer-gen-time">   <b>'.$skor_gen.'</b> .</span>';
+          echo '<span class="footer-gen-time"> Страница сгенерирована за  <b>'.$skor_gen.'</b> с.</span>';
         ?>
       </div>
 
